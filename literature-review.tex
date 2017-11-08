@@ -21,7 +21,7 @@
   collects data on mouse movements, keyboard input, along with other,
   fine-grained interaction metrics.
 
-  The capture solution presented above, in \cite{atterer2006knowing} is
+  The capture solution presented above, in \cite{atterer2006knowing}, is
   modified in \cite{apaolaza2015longitudinal} to allow deployment by adding
   JavaScript code to the web pages rather than requiring users to set their
   browser to re-route all connections through a proxy server. Data; low-level
@@ -30,7 +30,7 @@
   than interacting with the website quicker as they become more familiar, have
   increased periods of mouse inactivity. Continually, the users also spend
   more time on the website as they become more familiar. And finally, they
-  find taht there is no need to collect specific information about users, such
+  find that there is no need to collect specific information about users, such
   as any disabilities they may have, as their problems can be indentified through
   emerging behaviours in the experiements \cite{apaolaza2013understanding}.
 
@@ -44,6 +44,12 @@
   the tactics the users employed and how they react to problems (do they give up
   or carry on).
 
+  WevQuery, a scalable system to query user interaction logs collected in \cite{
+  apaolaza2015longitudinal, vigo2013evaluating, vigo2013coping}, is presented in
+  \cite{apaolaza2017wevquery}. It is a hypothesis testing interface with the aim
+  of better understanding user behaviour stored in the data collected (mouse clicks,
+  movement, etc.).
+
   In \cite{gledson2016combining, bull2016combining}, a fully-fledged, desktop
   application with an aim of trying to detect mild cognitive impairment in older
   computer users, through their interactions with the computer, is presented.
@@ -53,6 +59,69 @@
   clicks. They have early evidence that this is a promising method to detect
   cognitive impairments.
 
+  The authors in \cite{kodagoda2017using} are successfully able to infer the
+  reasoning behind analysts' decision making from low-level user interaction logs.
+  They detail some information about their data processsing techniques; converting
+  features to numeric expressions -- a fairly common practise -- and a set of
+  categorical labels to a set of integers which worked for Random Forest and
+  Hidden Markov models (scale-invariant models) but not for an SVM, so the integers
+  were standardised to have a mean of zero and a variance of one. To test their
+  models, they used a control model (no information classifier) which provided
+  the baseline for their models to beat.
+
+  In \cite{fu2017your} the aim is to predict user intention from mouse movements,
+  clicks, and positioning -- among other features -- with the focus on understanding
+  what the user intended when they triggered an interaction and then, from this
+  data, attempting to predict the next action. Two classification models are built;
+  a probability model and a machine learning model (SVM) model. The probability model
+  uses the previous $k$ activities of a user to predict the next activity and a second
+  (probability) model considers the time duration of the previous $k$ activities. The
+  SVM model is trained on the $k$ most recent user activities, the time duration of those
+  activities, and descriptive statisitics about the mouse interations within a set window
+  $W$. In their results, they find that both model types have a similar performance in their
+  experiments and to achieve the maximum accuracy -- for predicting future interactions
+  from historical actions -- the combination of both models, into a multimodal approach,
+  achieves the best results (a mean accuracy of 69\%). With regards of variable results,
+  they test a range of different values for both $k$ and $W$ and conclude that neither
+  can be too large; the best value for $k$ is 3 and when increasing the value of $W$, they
+  find that it introduces a large amount of noise.
+
+  A system that can assist a user in an answer discovery task is presented in
+  \cite{dabek2017grammar}. Various options are presented to the user in the form
+  of a graph, they are then able to traverse the graph to find an answer to their
+  question. Throughout the process, an assistive tool provides suggestions on additional
+  variables that could help their search (the number of bedrooms when searching for a
+  house value, for example) and suggest a new path in their search. While not much can
+  be taken from this paper, they make a general point about determining a $k$ value
+  in the $k$-means algorithm when there is some uncertainty about the optimal value
+  to use; test a range of values between one and the square root of the size of the
+  data divided by two. Adding this upper bound prevents over-fitting the value of
+  $k$.
+
+  In \cite{gotz2008empirical} the authors attempt to understand a users' analytical
+  goal and reasoning through high-level interaction metrics collected from a controlled
+  study. They had two main aims in the study; determine common structures of visual
+  analysis behaviour and characterise those structures with regards to what they
+  represent and how they impact a users' performance. In their results and evaluation,
+  they were able to find two behaviour structures of visual analysis activity:
+  patterns (short, ad-hoc sequences of visual actions performed iteratively through
+  the task) and trails (chains of user visual interaction activity leading to insight).
+
+  A new family of interactions to extend and enrich the input experience for
+  users of smartphones are introducted in \cite{zhang2016beyond}. Various additional
+  inputs for a smartphone are presented, these include the ability to detect in-pocket
+  and on-table touches through the detection of different physical interactions
+  with the smartphone. The authors use both machine learning (classification) and
+  rule-based (segementation) approaches to analyse characteristics of the interactions
+  and determine the action the user is attempting to perform. The rule-based
+  approach required no specific training for the users of the smartphone due to looking
+  for particular patterns and spikes in the microphone recording, accelerometer and
+  gyroscope on the phone, however, the machine learning method (kNN) did. They
+  adopted a user-independent model for the implementation of the kNN, which applies
+  a pre-collected training data set and does not require any data collection
+  from each user. In their evaluation, they found that the machine learning
+  approach achieved a range of results between 70\% and 90\% accuracy for the recognition of
+  interactions and the rule-based interactions can achieve over 92\% accuracy.
 
   \section{Engagement}
   A broad review of measuring and defining user engagement in a range of scenarios
@@ -75,7 +144,34 @@
   fixations on the non-immersive conidition), relying heavily on this in their
   analysis.
 
-  \section{Sequential Data Mining (plus others(?))}
+  \section{Sequential Data Mining}
+  A review of machine learning approaches, specific to a sequential data analysis
+  context, is presented in \cite{dietterich2002machine}. There is a primary focus
+  on text- and natural langauge-based solutions and the paper presents algorithms
+  such as; sliding window methods, Hidden Markov models, and graph transformer networks.
+  The point is made that these approaches are not exclusive to text or natural language
+  solutions and have a place in other types of sequential data analysis. An example of these
+  approaches being used in other domains is shown in \cite{kodagoda2017using} where
+  Hidden Markov models are used in an interaction data context.
+
+  Using annotated sensor data, collected in smart home environments, in
+  \cite{carolis2015incremental} the authors aimed to describe how process mining
+  can be used to learn users' daily routines. Through utilizing a First-Order learning
+  approach (symbolized reasoning in which each sentence, or statement, is broken
+  down into a subject and predicate), they propose a solution that can automatically
+  learn from daily routines from examples of other people's behaviour. They find,
+  through experimentation with toy and publicly available datasets, that their approach
+  is effectively able to learn and model the daily routines of people within smart
+  home environments. In addition to their work, the authors provide definitions
+  for three terms: activity recognition; aims at identifying the occurence of an
+  acitivity based on suitable combinations of events, task modelling; aims at
+  identifying which combinations of events determine the occurence of an activity,
+  and process mining; starts from the activities performed by some agent to carry
+  out a given process and identifies the valid patterns of activities that support
+  that process. Finally, they also make the point that Hidden Markov model-based
+  approaches are more suitable for representing sequential activities from a stream
+  of sensor events -- this backs up the point made previously about the various
+  applications the models can have.
 
   \bibliographystyle{apalike}
   \bibliography{references}
